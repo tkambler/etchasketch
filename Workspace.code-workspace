@@ -1,0 +1,64 @@
+{
+	"folders": [
+    { "path": ".", "name": "Project Root" },
+    { "path": "./projects/app", "name": "Application" },
+    { "path": "./projects/frontend", "name": "Frontend" },
+    { "path": "./projects/shared-utilities", "name": "Shared Utilities" },
+    { "path": "./projects/config-service", "name": "ConfigService" },
+    { "path": "./projects/app-service", "name": "AppService"},
+    { "path": "./projects/api-service", "name": "APIService"},
+    { "path": "./projects/log-service", "name": "LogService"},
+    { "path": "./common/config", "name": "Common (Rush)"},
+	],
+  "settings": {
+    "task.autoDetect": "off",
+    "taskExplorer.enableAppPublisher": false,
+    "taskExplorer.enableAnt": false,
+    "taskExplorer.enableAnsiconForAnt": false,
+    "taskExplorer.enableBash": false,
+    "taskExplorer.enableBatch": false,
+    "taskExplorer.enableGradle": false,
+    "taskExplorer.enableGrunt": false,
+    "taskExplorer.enableGulp": false,
+    "taskExplorer.enableMake": false,
+    "taskExplorer.enableNpm": false,
+    "taskExplorer.enableNsis": false,
+    "taskExplorer.enablePerl": false,
+    "taskExplorer.enablePowershell": false,
+    "taskExplorer.enablePython": false,
+    "taskExplorer.enableRuby": false,
+    "taskExplorer.enableTsc": false,
+    "taskExplorer.enableWorkspace": true,
+    "taskExplorer.groupSeparator": ":",
+    "taskExplorer.enableSideBar": true,
+    "taskExplorer.debug": false,
+    "files.associations": {
+      "rush.json": "jsonc",
+      "**/*.json.bak": "json",
+      "**/common/**/*.json": "jsonc",
+      "**/common/**/*.json.bak": "jsonc",
+      "**/config/**/*.json": "jsonc"
+    },
+    "files.exclude": {
+      "**/*.js.map": true,
+      "**/*.jsx.map": true,
+      "**/*.js": {
+        "when": "$(basename).ts"
+      },
+      "**/*?.js": { "when": "$(basename).tsx" },
+      "**/*.jsx": {
+        "when": "$(basename).tsx"
+      },
+      "**/node_modules": false
+    },
+    "makefile.extensionOutputFolder": "./.vscode",
+    "search.exclude": {
+      "common": true,
+      "common/config": true,
+      "**/rush": true,
+      "**/temp": true,
+      ".rush": true,
+      "**/node_modules": true
+    }
+  }
+}

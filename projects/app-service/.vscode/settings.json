@@ -1,0 +1,26 @@
+{
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "search.exclude": {
+      "src/**/*.js": true,
+      "**/node_modules": true,
+      "**/rush": true
+    },
+    "files.exclude": {
+      "**/*.js.map": true,
+      "**/*.jsx.map": true,
+      "**/*.js": {
+        "when": "$(basename).ts"
+      },
+      "**/*?.js": { "when": "$(basename).tsx" },
+      "**/*.jsx": {
+        "when": "$(basename).tsx"
+      },
+      "**/node_modules": true
+    },
+    "[markdown]": {
+      "editor.wordWrap": "wordWrapColumn",
+      "editor.wordWrapColumn": 120
+    }
+  }
+  

@@ -1,0 +1,22 @@
+{
+  "name": "@talkspace/app-service",
+  "version": "1.0.0",
+  "description": "AppService",
+  "main": "AppService",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "typedi": "0.8.0",
+    "@talkspace/api-service": "workspace:*",
+    "@talkspace/log-service": "workspace:*"
+  },
+  "prettier": {
+    "trailingComma": "es5",
+    "tabWidth": 2,
+    "semi": true,
+    "singleQuote": true
+  }
+}
