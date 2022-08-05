@@ -1,0 +1,47 @@
+{
+  "bodyParserJson": {
+    "enabled": true,
+    "priority": 2,
+    "module": {
+      "name": "body-parser",
+      "method": "json",
+      "arguments": [
+        {
+          "limit": "200MB"
+        }
+      ]
+    }
+  },
+  "morgan": {
+    "enabled": true,
+    "priority": 3,
+    "module": {
+      "name": "morgan",
+      "arguments": ["combined"]
+    }
+  },
+  "route-uuid": {
+    "enabled": true,
+    "priority": 4,
+    "module": {
+      "name": "@talkspace/api-service/middleware/route-uuid",
+      "arguments": [
+        {
+          "routes": "config:routes"
+        }
+      ]
+    }
+  },
+  "routes": {
+    "enabled": true,
+    "priority": 5,
+    "module": {
+      "name": "@talkspace/api-service/middleware/route-loader",
+      "arguments": [
+        {
+          "routes": "config:routes"
+        }
+      ]
+    }
+  }
+}

@@ -6,6 +6,7 @@ import { ChildLogger, Logger } from '@talkspace/log-service';
 import { ConfigService } from '@talkspace/config-service';
 import express from 'express';
 import memoize from 'memoize-decorator';
+import meddleware from 'meddleware';
 import * as http from 'http';
 
 @Service()
@@ -57,6 +58,7 @@ export class APIService {
   @memoize
   private get app(): express.Application {
     const app = express();
+    app.use(meddleware(this.config.get('meddleware')));
     return app;
   }
 }

@@ -21,7 +21,13 @@ function reducer(state, action) {
 export function withState(Component) {
   return (props) => {
     const [state, dispatch] = React.useReducer(reducer, {
-      user: null,
+      user: {
+        id: 1,
+        first_name: 'John',
+        last_name: 'Doe',
+        username: 'john.doe',
+        email: 'john.doe@gmail.com',
+      },
     });
     return (
       <LoginStateContext.Provider

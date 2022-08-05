@@ -1,0 +1,13 @@
+[
+  {
+    "path": "/api/session",
+    "method": "GET",
+    "handler": "@talkspace/api-service/routes/session/get"
+  }
+  // {
+  //   "path": "/api/session",
+  //   "method": "POST",
+  //   "handler": "path:../services/API/routes/session/assume_identity",
+  //   "autodoc": false
+  // }
+]

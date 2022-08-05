@@ -1,3 +1,6 @@
 {
-  "port": "8040"
+  "port": "8040",
+  "routes": "concat:./routes/**/*.json",
+  "meddleware": "import:./meddleware",
+  "appPath": "path:../"
 }

@@ -424,6 +424,18 @@
       "packageName": "@talkspace/log-service",
       "projectFolder": "projects/log-service"
     },
+    {
+      "packageName": "@talkspace/knex-service",
+      "projectFolder": "projects/knex-service"
+    },
+    {
+      "packageName": "@talkspace/user-service",
+      "projectFolder": "projects/user-service"
+    },
+    {
+      "packageName": "@talkspace/session-service",
+      "projectFolder": "projects/session-service"
+    },
     // {
     //   /**
     //    * The NPM package name of the project (must match package.json)

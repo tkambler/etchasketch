@@ -15,7 +15,7 @@ export function Routes(): React.ReactElement {
         <Redirect to="/login" />
       )}
       {!loginState.user && <Route path="/login" component={Login} />}
-      {loginState.user && <Route path="/dashboard" component={Dashboard} />}
+      {loginState.user && <Route path="/" component={Dashboard} />}
     </Switch>
   );
 }

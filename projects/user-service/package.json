@@ -1,23 +1,22 @@
 {
-  "name": "@talkspace/shared-utilities",
+  "name": "@talkspace/user-service",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "UserService",
+  "main": "UserService",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "UNLICENSED",
-  "devDependencies": {
-    "execa": "6.1.0"
+  "dependencies": {
+    "typedi": "0.8.0",
+    "@talkspace/knex-service": "workspace:*",
+    "@talkspace/log-service": "workspace:*"
   },
   "prettier": {
     "trailingComma": "es5",
     "tabWidth": 2,
     "semi": true,
     "singleQuote": true
-  },
-  "dependencies": {
-    "fs-extra": "10.1.0"
   }
 }

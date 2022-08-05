@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start:dev": "NODE_ENV=local ts-node-dev --prefer-ts-exts --respawn --exit-child --watch config scripts/start",
+    "exec": "TS_NODE_PROJECT=tsconfig.json node -r ts-node/register/transpile-only commands/$npm_config_command.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -18,11 +19,17 @@
     "module-alias": "2.2.2",
     "reflect-metadata": "0.1.13",
     "@talkspace/app-service": "workspace:*",
-    "@talkspace/config-service": "workspace:*"
+    "@talkspace/api-service": "workspace:*",
+    "@talkspace/config-service": "workspace:*",
+    "@talkspace/knex-service": "workspace:*",
+    "commander": "9.4.0",
+    "p-retry": "4.6.1",
+    "delay": "5.0.0"
   },
   "devDependencies": {
     "typescript": "4.7.4",
-    "ts-node-dev": "2.0.0"
+    "ts-node-dev": "2.0.0",
+    "ts-node": "10.9.1"
   },
   "prettier": {
     "trailingComma": "es5",

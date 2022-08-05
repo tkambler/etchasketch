@@ -7,7 +7,10 @@
     { "path": "./projects/config-service", "name": "ConfigService" },
     { "path": "./projects/app-service", "name": "AppService"},
     { "path": "./projects/api-service", "name": "APIService"},
+    { "path": "./projects/knex-service", "name": "KnexService" },
     { "path": "./projects/log-service", "name": "LogService"},
+    { "path": "./projects/user-service", "name": "UserService"},
+    { "path": "./projects/session-service", "name": "SessionService"},
     { "path": "./common/config", "name": "Common (Rush)"},
 	],
   "settings": {
