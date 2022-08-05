@@ -60,7 +60,7 @@ The following features have been enabled:
     - Whiteboards are stored as PNGs *and* SVGs, and the underlying data that originally went into the canvas is saved as well (in order to allow for playback)
 - A shared view from which you can view all whiteboards (and delete your own)
 - The ability to view whiteboards
-    - The ability to replay the creation process as a movie
+    - The ability to replay the creation process (i.e. watch the whiteboard being created)
 
 The following features have *not* been enabled:
 
