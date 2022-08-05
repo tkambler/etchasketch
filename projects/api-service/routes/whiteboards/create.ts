@@ -10,16 +10,16 @@ class Route {
   public async handle(req, res) {
     const data = await Joi.object({
       data: Joi.array().required(),
+      svg: Joi.string().required(),
     }).validateAsync(req.body);
 
     const whiteboard = await this.whiteboardService.createWhiteboard({
-      data,
+      data: data.data,
+      svg: data.svg,
       userId: req.user.id,
     });
 
-    console.log('whiteboard', whiteboard);
-
-    return res.status(200).end();
+    return res.send(whiteboard);
   }
 }
 

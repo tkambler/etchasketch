@@ -1,5 +1,8 @@
 import { default as EventEmitter } from 'eventemitter3';
+import C2S from 'canvas2svg';
 import { getMousePosition } from './util';
+
+console.log(C2S);
 
 type EventTypes = {
   mousemove: (e: any) => any;
@@ -68,6 +71,30 @@ export class CanvasEmitter extends EventEmitter<EventTypes> {
 
   public export() {
     return [...this.events];
+  }
+
+  public exportSVG() {
+    const ctx = new C2S(1500, 800);
+    ctx.moveTo(0, 0);
+    this.events.forEach((e) => {
+      switch (e.type) {
+        case 'setLineWidth':
+          ctx.lineWidth = e.width;
+          break;
+        case 'setStrokeColor':
+          ctx.strokeStyle = e.color;
+          break;
+        case 'lineTo':
+          ctx.lineTo(e.x, e.y);
+          break;
+        case 'stroke':
+          ctx.stroke();
+          break;
+        default:
+          throw new Error(`Unknown event type: ${e.type}`);
+      }
+    });
+    return ctx.getSerializedSvg();
   }
 
   private commit() {

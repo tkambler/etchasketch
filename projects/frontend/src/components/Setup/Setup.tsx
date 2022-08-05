@@ -3,8 +3,9 @@ import { withTheme } from './Theme';
 import { withFormContext } from './FormContext';
 import { withToast } from './Toast';
 import { withState } from './State';
+import { withNav } from './Nav';
 import { compose } from 'lodash/fp';
-export { useLoginState } from './State';
+export { useLoginState, actions as sessionActions } from './State';
 export { useToast } from './Toast';
 import './styles.scss';
 export { useFormContext } from './FormContext';
@@ -14,5 +15,6 @@ export const Setup = compose(
   withState,
   withTheme,
   withFormContext,
-  withToast
+  withToast,
+  withNav
 )((props) => props.children);

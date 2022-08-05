@@ -10,25 +10,10 @@ export function useState() {
 
 function reducer(state, action) {
   switch (action.type) {
-    case 'setStrokeSize':
+    case 'setWhiteboards':
       return {
         ...state,
-        strokeSize: action.payload.value,
-      };
-    case 'setTool':
-      return {
-        ...state,
-        tool: action.payload.value,
-      };
-    case 'setStrokeColor':
-      return {
-        ...state,
-        strokeColor: action.payload.value,
-      };
-    case 'setEmitter':
-      return {
-        ...state,
-        emitter: action.payload.value,
+        whiteboards: action.payload.value,
       };
     default:
       throw new Error();
@@ -40,9 +25,7 @@ export function withState(Component) {
     const [state, dispatch] = useReducerX(
       reducer,
       {
-        strokeSize: 1,
-        tool: 'pen',
-        strokeColor: 'black',
+        whiteboards: null,
       },
       [thunkMiddleware]
     );

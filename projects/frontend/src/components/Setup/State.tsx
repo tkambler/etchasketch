@@ -12,6 +12,46 @@ export function useLoginState() {
   return React.useContext(LoginStateContext);
 }
 
+export const actions = {
+  logout: (toast) => {
+    return async (dispatch, getState) => {
+      await axios({
+        method: 'DELETE',
+        url: '/session',
+      });
+      dispatch({
+        type: 'signout',
+      });
+      toast.enqueue('You have signed out.', {
+        variant: 'success',
+      });
+    };
+  },
+  getSession: () => {
+    return async (dispatch, getState) => {
+      try {
+        const { data: session } = await axios({
+          method: 'GET',
+          url: '/session',
+        });
+        dispatch({
+          type: 'initComplete',
+          payload: {
+            user: session,
+          },
+        });
+      } catch (err) {
+        dispatch({
+          type: 'initComplete',
+          payload: {
+            user: null,
+          },
+        });
+      }
+    };
+  },
+};
+
 function reducer(state, action) {
   switch (action.type) {
     case 'setUser':
@@ -25,33 +65,14 @@ function reducer(state, action) {
         user: action.payload.user || null,
         initialized: true,
       };
+    case 'signout':
+      return {
+        user: null,
+        initialized: true,
+      };
     default:
       throw new Error();
   }
-}
-
-function getSession() {
-  return async (dispatch, getState) => {
-    try {
-      const { data: session } = await axios({
-        method: 'GET',
-        url: '/session',
-      });
-      dispatch({
-        type: 'initComplete',
-        payload: {
-          user: session,
-        },
-      });
-    } catch (err) {
-      dispatch({
-        type: 'initComplete',
-        payload: {
-          user: null,
-        },
-      });
-    }
-  };
 }
 
 export function withState(Component) {
@@ -68,7 +89,7 @@ export function withState(Component) {
     );
     React.useEffect(() => {
       if (!state.initialized) {
-        dispatch(getSession());
+        dispatch(actions.getSession());
       }
     }, [state.initialized]);
     React.useEffect(() => {

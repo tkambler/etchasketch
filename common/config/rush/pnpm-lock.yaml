@@ -17,6 +17,7 @@ importers:
       express: 4.18.1
       express-session: 1.17.3
       joi: 17.6.0
+      lodash: 4.17.21
       meddleware: 3.0.4
       memoize-decorator: 1.0.2
       morgan: 1.10.0
@@ -31,6 +32,7 @@ importers:
       cors: 2.8.5
       express: 4.18.1
       express-session: 1.17.3
+      lodash: 4.17.21
       meddleware: 3.0.4
       memoize-decorator: 1.0.2
       morgan: 1.10.0
@@ -128,6 +130,7 @@ importers:
       '@testing-library/react': 9.5.0
       '@types/jest': 25.1.4
       axios: 0.27.2
+      canvas2svg: 1.0.16
       classnames: 2.3.1
       css-loader: 3.4.2
       eventemitter3: 4.0.7
@@ -165,6 +168,7 @@ importers:
       '@testing-library/react': 9.5.0_react-dom@17.0.2+react@18.2.0
       '@types/jest': 25.1.4
       axios: 0.27.2
+      canvas2svg: 1.0.16
       classnames: 2.3.1
       css-loader: 3.4.2_webpack@5.74.0
       eventemitter3: 4.0.7
@@ -215,16 +219,6 @@ importers:
       typedi: 0.8.0
     dependencies:
       pino: 8.3.1
-      typedi: 0.8.0
-
-  ../../projects/session-service:
-    specifiers:
-      '@talkspace/knex-service': workspace:*
-      '@talkspace/log-service': workspace:*
-      typedi: 0.8.0
-    dependencies:
-      '@talkspace/knex-service': link:../knex-service
-      '@talkspace/log-service': link:../log-service
       typedi: 0.8.0
 
   ../../projects/shared-utilities:
@@ -2396,6 +2390,10 @@ packages:
 
   /caniuse-lite/1.0.30001373:
     resolution: {integrity: sha512-pJYArGHrPp3TUqQzFYRmP/lwJlj8RCbVe3Gd3eJQkAV8SAC6b19XS9BjMvRdvaS8RMkaTN8ZhoHP6S1y8zzwEQ==}
+    dev: true
+
+  /canvas2svg/1.0.16:
+    resolution: {integrity: sha512-r3ryHprzDOtAsFuczw+/DKkLR3XexwIlJWnJ+71I9QF7V9scYaV5JZgYDoCUlYtT3ARnOpDcm/hDNZYbWMRHqA==}
     dev: true
 
   /capture-exit/2.0.0:

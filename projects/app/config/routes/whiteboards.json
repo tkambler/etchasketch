@@ -1,6 +1,11 @@
 [
   {
     "path": "/api/whiteboards",
+    "method": "GET",
+    "handler": "@talkspace/api-service/routes/whiteboards/list"
+  },
+  {
+    "path": "/api/whiteboards",
     "method": "POST",
     "handler": "@talkspace/api-service/routes/whiteboards/create"
   }

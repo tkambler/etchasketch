@@ -22,5 +22,4 @@ function Whiteboard(): React.ReactElement {
 }
 
 const Composed = compose(withState)(Whiteboard);
-
 export { Composed as Whiteboard };

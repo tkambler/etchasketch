@@ -8,5 +8,10 @@
     "path": "/api/session",
     "method": "POST",
     "handler": "@talkspace/api-service/routes/session/create"
+  },
+  {
+    "path": "/api/session",
+    "method": "DELETE",
+    "handler": "@talkspace/api-service/routes/session/destroy"
   }
 ]
