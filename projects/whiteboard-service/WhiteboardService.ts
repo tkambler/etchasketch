@@ -17,6 +17,10 @@ export class WhiteboardService {
   @Inject()
   private knex: KnexService;
 
+  /**
+   * Persists a whiteboard to the database. As part of this process, it will also generate a PNG from
+   * the provided SVG data and persist that, as well.
+   */
   public async createWhiteboard({
     data,
     drawingTime,
@@ -51,6 +55,9 @@ export class WhiteboardService {
       .where('id', id);
   }
 
+  /**
+   * Returns a list of all whiteboards that belong to the specified user.
+   */
   public async getWhiteboardsForUser(userId: number) {
     const rows = await (this.knex as any)('whiteboards as w')
       .innerJoin('users as u', 'u.id', '=', 'w.user_id')
@@ -86,6 +93,9 @@ export class WhiteboardService {
     }));
   }
 
+  /**
+   * Returns a list of all whiteboards.
+   */
   public async getWhiteboards() {
     const rows = await (this.knex as any)('whiteboards as w')
       .innerJoin('users as u', 'u.id', '=', 'w.user_id')
@@ -120,6 +130,9 @@ export class WhiteboardService {
     }));
   }
 
+  /**
+   * Fetches a single whiteboard by ID.
+   */
   public async getWhiteboardById(id: number) {
     const rows = await (this.knex as any)('whiteboards as w')
       .innerJoin('users as u', 'u.id', '=', 'w.user_id')
@@ -155,6 +168,9 @@ export class WhiteboardService {
     }))[0];
   }
 
+  /**
+   * Destroys a single whiteboard by ID.
+   */
   public async destroyWhiteboardById(id: number) {
     await (this.knex as any)('whiteboards').where('id', id).del();
   }

@@ -44,6 +44,7 @@ This project takes advantage of the monorepo approach by creating distinct proje
     - Uses [knex](https://knexjs.org/)
         - Currently uses SQLite, but adapters exist for various popular DBs (e.g. PostgreSQL, MySQL, MSSQL, etc...).
 - LogService - Service for logging useful runtime info to the console (or elsewhere, if so desired)
+    - Uses [pino](https://github.com/pinojs/pino)
 - UserService - Exposes methods for creating users, fetching user data, etc...
 - WhiteboardService - Exposes methods for creating whiteboards, fetching whiteboard data, etc...
 
