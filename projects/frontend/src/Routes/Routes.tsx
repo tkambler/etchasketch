@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { useLocation } from '@app/lib/hooks';
-import { Admin } from './Admin/Admin';
+import { Whiteboards } from './Whiteboards/Whiteboards';
 import { Login } from './Login/Login';
 import { Dashboard } from './Dashboard/Dashboard';
 import { useLoginState } from '@app/components/Setup/Setup';
@@ -15,7 +15,8 @@ export function Routes(): React.ReactElement {
         <Redirect to="/login" />
       )}
       {!loginState.user && <Route path="/login" component={Login} />}
-      {loginState.user && <Route path="/" component={Dashboard} />}
+      {loginState.user && <Route path="/dashboard" component={Dashboard} />}
+      {loginState.user && <Route path="/whiteboards" component={Whiteboards} />}
     </Switch>
   );
 }

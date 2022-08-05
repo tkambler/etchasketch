@@ -10,8 +10,8 @@ import './styles.scss';
 export { useFormContext } from './FormContext';
 
 export const Setup = compose(
-  withState,
   withRouter,
+  withState,
   withTheme,
   withFormContext,
   withToast

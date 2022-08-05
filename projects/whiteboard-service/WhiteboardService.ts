@@ -31,13 +31,21 @@ export class WhiteboardService {
     data: any[];
     userId: string;
   }) {
-    console.log('save', data, userId);
-    const whiteboard = await (this.knex as any)('whiteboards').insert({
+    const [id] = await (this.knex as any)('whiteboards').insert({
       name: moment().format('dddd, MMMM Do YYYY, h:mm:ss a'),
       data: JSON.stringify(data),
       user_id: userId,
       created_at: new Date().getTime(),
     });
-    console.log('inserted', whiteboard);
+    this.log.info(
+      {
+        id,
+        userId,
+      },
+      'New whiteboard created.'
+    );
+    return (this.knex as any)('whiteboards')
+      .first('id', 'name', 'data', 'user_id', 'created_at')
+      .where('id', id);
   }
 }
