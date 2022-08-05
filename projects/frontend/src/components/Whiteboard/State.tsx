@@ -35,6 +35,11 @@ function reducer(state, action) {
         ...state,
         whiteboard: action.payload.value,
       };
+    case 'setPlaying':
+      return {
+        ...state,
+        playing: action.payload.value,
+      };
     default:
       throw new Error();
   }
@@ -48,6 +53,7 @@ export function withState(Component) {
         strokeSize: 1,
         tool: 'pen',
         strokeColor: 'black',
+        playing: false,
       },
       [thunkMiddleware]
     );

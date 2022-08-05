@@ -74,6 +74,10 @@ export class CanvasEmitter extends EventEmitter<EventTypes> {
     });
   }
 
+  public reset() {
+    this.ctx.clearRect(0, 0, 1500, 800);
+  }
+
   public setEvents(events: any[]) {
     this.events = events;
   }

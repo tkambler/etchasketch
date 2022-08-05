@@ -53,6 +53,7 @@ importers:
       confit: 3.0.0
       delay: 5.0.0
       express: 4.18.1
+      fs-extra: 10.1.0
       memoize-decorator: 1.0.2
       module-alias: 2.2.2
       p-retry: 4.6.1
@@ -72,6 +73,7 @@ importers:
       confit: 3.0.0
       delay: 5.0.0
       express: 4.18.1
+      fs-extra: 10.1.0
       memoize-decorator: 1.0.2
       module-alias: 2.2.2
       p-retry: 4.6.1

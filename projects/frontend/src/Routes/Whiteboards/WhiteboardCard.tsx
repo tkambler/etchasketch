@@ -6,8 +6,10 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { useHistory } from '@app/lib/hooks';
+import { useState } from './State';
 
 export function WhiteboardCard({ whiteboard }: { whiteboard }) {
+  const state = useState();
   const history = useHistory();
   return (
     <Card sx={{ maxWidth: 300 }}>
@@ -36,6 +38,9 @@ export function WhiteboardCard({ whiteboard }: { whiteboard }) {
           }}
         >
           View
+        </Button>
+        <Button size="small" onClick={() => {}}>
+          Delete
         </Button>
       </CardActions>
     </Card>

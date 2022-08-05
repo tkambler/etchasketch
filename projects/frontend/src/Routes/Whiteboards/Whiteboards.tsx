@@ -32,9 +32,9 @@ function Whiteboards(): React.ReactElement {
       >
         Create New Whiteboard
       </Button>
-      <Grid container spacing={2}>
+      <Grid container spacing={1}>
         {state.whiteboards.map((whiteboard) => (
-          <Grid key={whiteboard.id} item xs={3}>
+          <Grid key={whiteboard.id} item xs={2}>
             <WhiteboardCard whiteboard={whiteboard} />
           </Grid>
         ))}

@@ -234,7 +234,12 @@ function ViewMenu(): React.ReactElement {
             </Typography>
           </ListItemText>
         </MenuItem>
-        <MenuItem onClick={() => {}}>
+        <MenuItem
+          disabled={state.playing}
+          onClick={() => {
+            state.dispatch(actions.replay());
+          }}
+        >
           <ListItemText>Replay</ListItemText>
         </MenuItem>
       </MenuList>

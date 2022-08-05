@@ -25,3 +25,24 @@ export function save(toast, history) {
     }
   };
 }
+
+export function replay() {
+  return async (dispatch, getState) => {
+    const state = getState();
+    state.emitter.reset();
+    state.emitter.events = state.whiteboard.data;
+    dispatch({
+      type: 'setPlaying',
+      payload: {
+        value: true,
+      },
+    });
+    await state.emitter.replay();
+    dispatch({
+      type: 'setPlaying',
+      payload: {
+        value: false,
+      },
+    });
+  };
+}

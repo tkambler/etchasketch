@@ -1,6 +1,7 @@
 import * as React from 'react';
 import * as hooks from './hooks';
 import { useState } from './State';
+import * as actions from './actions';
 
 export function Canvas(props: {
   width: number;
@@ -23,8 +24,7 @@ export function Canvas(props: {
       },
     });
     if (props.mode === 'view') {
-      canvasEmitter.events = state.whiteboard.data;
-      canvasEmitter.replay();
+      state.dispatch(actions.replay());
     }
   }, [canvasEmitter]);
 
