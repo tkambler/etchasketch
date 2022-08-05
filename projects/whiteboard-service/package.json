@@ -13,7 +13,8 @@
     "@talkspace/knex-service": "workspace:*",
     "@talkspace/log-service": "workspace:*",
     "lodash": "4.17.21",
-    "moment": "2.29.4"
+    "moment": "2.29.4",
+    "sharp": "0.30.7"
   },
   "prettier": {
     "trailingComma": "es5",

@@ -11,11 +11,13 @@ class Route {
     const data = await Joi.object({
       data: Joi.array().required(),
       svg: Joi.string().required(),
+      drawingTime: Joi.number().integer().positive(),
     }).validateAsync(req.body);
 
     const whiteboard = await this.whiteboardService.createWhiteboard({
       data: data.data,
       svg: data.svg,
+      drawingTime: data.drawingTime,
       userId: req.user.id,
     });
 

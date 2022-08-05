@@ -2,8 +2,6 @@ import { default as EventEmitter } from 'eventemitter3';
 import C2S from 'canvas2svg';
 import { getMousePosition } from './util';
 
-console.log(C2S);
-
 type EventTypes = {
   mousemove: (e: any) => any;
   mousedown: (e: any) => any;
@@ -19,11 +17,16 @@ export class CanvasEmitter extends EventEmitter<EventTypes> {
   private mouseLocation: Coordinates;
   private tracking = false;
   private events: any[] = [];
+  private startTime: number;
+  private locked = false;
 
   constructor(private canvas, private ctx) {
     super();
 
     canvas.addEventListener('mousemove', (e) => {
+      if (this.locked) {
+        return;
+      }
       this.mouseLocation = getMousePosition(canvas, e);
       if (this.tracking) {
         this.commit();
@@ -35,7 +38,21 @@ export class CanvasEmitter extends EventEmitter<EventTypes> {
     });
 
     canvas.addEventListener('mousedown', (e) => {
+      if (this.locked) {
+        return;
+      }
+      if (!this.startTime) {
+        this.startTime = new Date().getTime();
+      }
       this.tracking = true;
+      this.events.push({
+        type: 'beginPath',
+      });
+      this.events.push({
+        type: 'moveTo',
+        x: this.mouseLocation.x,
+        y: this.mouseLocation.y,
+      });
       ctx.beginPath();
       ctx.moveTo(this.mouseLocation.x, this.mouseLocation.y);
       this.emit('mousedown', {
@@ -45,6 +62,9 @@ export class CanvasEmitter extends EventEmitter<EventTypes> {
     });
 
     canvas.addEventListener('mouseup', (e) => {
+      if (this.locked) {
+        return;
+      }
       this.tracking = false;
       this.emit('mouseup', {
         event: e,
@@ -54,6 +74,9 @@ export class CanvasEmitter extends EventEmitter<EventTypes> {
   }
 
   public setLineWidth(width: number) {
+    if (this.locked) {
+      return;
+    }
     this.ctx.lineWidth = width;
     this.events.push({
       type: 'setLineWidth',
@@ -62,6 +85,9 @@ export class CanvasEmitter extends EventEmitter<EventTypes> {
   }
 
   public setStrokeColor(color: string) {
+    if (this.locked) {
+      return;
+    }
     this.ctx.strokeStyle = color;
     this.events.push({
       type: 'setStrokeColor',
@@ -70,14 +96,26 @@ export class CanvasEmitter extends EventEmitter<EventTypes> {
   }
 
   public export() {
-    return [...this.events];
+    this.locked = true;
+    this.tracking = false;
+    return {
+      data: [...this.events],
+      svg: this.exportSVG(),
+      drawingTime: Math.floor((new Date().getTime() - this.startTime) / 1000),
+    };
   }
 
-  public exportSVG() {
+  private exportSVG() {
     const ctx = new C2S(1500, 800);
     ctx.moveTo(0, 0);
     this.events.forEach((e) => {
       switch (e.type) {
+        case 'beginPath':
+          ctx.beginPath();
+          break;
+        case 'moveTo':
+          ctx.moveTo(e.x, e.y);
+          break;
         case 'setLineWidth':
           ctx.lineWidth = e.width;
           break;
@@ -98,6 +136,9 @@ export class CanvasEmitter extends EventEmitter<EventTypes> {
   }
 
   private commit() {
+    if (this.locked) {
+      return;
+    }
     this.ctx.lineTo(this.mouseLocation.x, this.mouseLocation.y);
     this.ctx.stroke();
     this.events.push({

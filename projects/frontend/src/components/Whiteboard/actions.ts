@@ -2,19 +2,25 @@ import { axios } from '@app/axios';
 
 export function save(toast) {
   return async (dispatch, getState) => {
-    const state = getState();
-    const data = state.emitter.export();
-    const svg = state.emitter.exportSVG();
-    await axios({
-      method: 'POST',
-      url: '/whiteboards',
-      data: {
-        data,
-        svg,
-      },
-    });
-    toast.enqueue('Whiteboard saved.', {
-      variant: 'success',
-    });
+    try {
+      const state = getState();
+      const { data, svg, drawingTime } = state.emitter.export();
+      await axios({
+        method: 'POST',
+        url: '/whiteboards',
+        data: {
+          data,
+          svg,
+          drawingTime,
+        },
+      });
+      toast.enqueue('Whiteboard saved.', {
+        variant: 'success',
+      });
+    } catch (err) {
+      toast.enqueue('Failed to save image.', {
+        variant: 'error',
+      });
+    }
   };
 }

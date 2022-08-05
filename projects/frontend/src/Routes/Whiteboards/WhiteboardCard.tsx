@@ -1,72 +1,43 @@
 import * as React from 'react';
-import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
-import CardHeader from '@mui/material/CardHeader';
-import CardMedia from '@mui/material/CardMedia';
-import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
-import Collapse from '@mui/material/Collapse';
-import Avatar from '@mui/material/Avatar';
-import IconButton, { IconButtonProps } from '@mui/material/IconButton';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { red } from '@mui/material/colors';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import ShareIcon from '@mui/icons-material/Share';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
-
-interface ExpandMoreProps extends IconButtonProps {
-  expand: boolean;
-}
-
-const ExpandMore = styled((props: ExpandMoreProps) => {
-  const { expand, ...other } = props;
-  return <IconButton {...other} />;
-})(({ theme, expand }) => ({
-  transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
-  marginLeft: 'auto',
-  transition: theme.transitions.create('transform', {
-    duration: theme.transitions.duration.shortest,
-  }),
-}));
+import { useHistory } from '@app/lib/hooks';
 
 export function WhiteboardCard({ whiteboard }: { whiteboard }) {
-  const [expanded, setExpanded] = React.useState(false);
-
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
-
+  const history = useHistory();
   return (
-    <Card sx={{ maxWidth: 345 }}>
-      <CardHeader
-        action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
-        }
-        title={whiteboard.name}
-      />
-      <div
-        dangerouslySetInnerHTML={{
-          __html: whiteboard.svg,
-        }}
-      />
-      {/* <CardMedia
+    <Card sx={{ maxWidth: 300 }}>
+      <CardMedia
         component="img"
-        height="194"
-        // image="/static/images/cards/paella.jpg"
-        src={whiteboard.svg}
-      /> */}
+        width="300"
+        image={`http://localhost:8040/api/whiteboards/${whiteboard.id}.png`}
+      />
       <CardContent>
+        <Typography gutterBottom variant="h5" component="div">
+          {whiteboard.name}
+        </Typography>
         <Typography variant="body2" color="text.secondary">
           Created By: {whiteboard.user.first_name} {whiteboard.user.last_name} (
           {whiteboard.user.username})
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          Drawing Time: -
+          Drawing Time: {whiteboard.drawing_time.toLocaleString()} second(s)
         </Typography>
       </CardContent>
+      <CardActions>
+        <Button
+          size="small"
+          onClick={() => {
+            history.push(`/whiteboard/${whiteboard.id}`);
+          }}
+        >
+          View
+        </Button>
+      </CardActions>
     </Card>
   );
 }

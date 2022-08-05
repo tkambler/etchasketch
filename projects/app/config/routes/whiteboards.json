@@ -8,5 +8,10 @@
     "path": "/api/whiteboards",
     "method": "POST",
     "handler": "@talkspace/api-service/routes/whiteboards/create"
+  },
+  {
+    "path": "/api/whiteboards/:whiteboardId.png",
+    "method": "GET",
+    "handler": "@talkspace/api-service/routes/whiteboards/png"
   }
 ]
