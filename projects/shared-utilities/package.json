@@ -9,7 +9,9 @@
   "author": "",
   "license": "UNLICENSED",
   "devDependencies": {
-    "execa": "6.1.0"
+    "execa": "6.1.0",
+    "open": "8.4.0",
+    "delay": "5.0.0"
   },
   "prettier": {
     "trailingComma": "es5",

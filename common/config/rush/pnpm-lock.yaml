@@ -227,12 +227,16 @@ importers:
 
   ../../projects/shared-utilities:
     specifiers:
+      delay: 5.0.0
       execa: 6.1.0
       fs-extra: 10.1.0
+      open: 8.4.0
     dependencies:
       fs-extra: 10.1.0
     devDependencies:
+      delay: 5.0.0
       execa: 6.1.0
+      open: 8.4.0
 
   ../../projects/user-service:
     specifiers:

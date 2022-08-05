@@ -2,6 +2,8 @@
  * Starts the development environment.
  */
 import { execa } from 'execa';
+import open from 'open';
+import delay from 'delay';
 import * as fs from 'fs-extra';
 import * as path from 'path';
 import * as url from 'url';
@@ -40,6 +42,10 @@ const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
     stdin: 'inherit',
     stdout: 'inherit',
     stderr: 'inherit',
+  });
+
+  delay(3000).then(() => {
+    open('http://localhost:9010');
   });
 
   await Promise.all([api, frontend]);
