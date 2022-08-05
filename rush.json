@@ -433,10 +433,6 @@
       "projectFolder": "projects/user-service"
     },
     {
-      "packageName": "@talkspace/session-service",
-      "projectFolder": "projects/session-service"
-    },
-    {
       "packageName": "@talkspace/whiteboard-service",
       "projectFolder": "projects/whiteboard-service"
     },
