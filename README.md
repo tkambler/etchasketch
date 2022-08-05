@@ -68,3 +68,8 @@ The following features have *not* been enabled:
 - The ability to share a whiteboard publicly
 
 **Of Note:** Smoothing out the drawings should be rather straightforward, but was not done. Doing so would likely involve writing to the canvas using a bezier curve algorith.
+
+## React Notes
+
+- Simple state management approaches were used as opposed to elaborate state management tools (e.g. Redux, sagas, etc...).
+    - React's built-in `useReducer` method was extended with thunk support via `@0y0/use-reducer-x`.

@@ -10,15 +10,3 @@ export function getMousePosition(canvas, e) {
     y: e.clientY - rect.top,
   };
 }
-
-export function degToRad(degrees) {
-  return (degrees * Math.PI) / 180;
-}
-
-export const colorMap = {
-  black: 'rgb(0, 0, 0)',
-  blue: 'rgb(11, 0, 255)',
-  green: 'rgb(7, 255, 0)',
-  orange: 'rgb(255, 148, 0)',
-  red: 'rgb(255, 0, 0)',
-};
