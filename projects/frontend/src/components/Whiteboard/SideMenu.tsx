@@ -7,11 +7,13 @@ import ListItemText from '@mui/material/ListItemText';
 import Typography from '@mui/material/Typography';
 import { useState } from './State';
 import { useToast } from '@app/components/Setup/Setup';
+import { useHistory } from '@app/lib/hooks';
 import * as actions from './actions';
 
-export function SideMenu(): React.ReactElement {
+function CreateMenu(): React.ReactElement {
   const state = useState();
   const toast = useToast();
+  const history = useHistory();
   return (
     <Paper sx={{ width: 320, maxWidth: '100%' }}>
       <MenuList>
@@ -24,7 +26,7 @@ export function SideMenu(): React.ReactElement {
         </MenuItem>
         <MenuItem
           onClick={() => {
-            state.dispatch(actions.save(toast));
+            state.dispatch(actions.save(toast, history));
           }}
         >
           <ListItemText>Save</ListItemText>
@@ -218,4 +220,34 @@ export function SideMenu(): React.ReactElement {
       </MenuList>
     </Paper>
   );
+}
+
+function ViewMenu(): React.ReactElement {
+  const state = useState();
+  return (
+    <Paper sx={{ width: 320, maxWidth: '100%' }}>
+      <MenuList>
+        <MenuItem disabled={true}>
+          <ListItemText>
+            <Typography variant="button" color="text.secondary">
+              Actions
+            </Typography>
+          </ListItemText>
+        </MenuItem>
+        <MenuItem onClick={() => {}}>
+          <ListItemText>Replay</ListItemText>
+        </MenuItem>
+      </MenuList>
+    </Paper>
+  );
+}
+
+export function SideMenu({ mode }: { mode: string }): React.ReactElement {
+  if (mode === 'create') {
+    return <CreateMenu />;
+  } else if (mode === 'view') {
+    return <ViewMenu />;
+  } else {
+    return null;
+  }
 }

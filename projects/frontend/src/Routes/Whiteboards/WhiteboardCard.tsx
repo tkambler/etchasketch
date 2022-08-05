@@ -32,7 +32,7 @@ export function WhiteboardCard({ whiteboard }: { whiteboard }) {
         <Button
           size="small"
           onClick={() => {
-            history.push(`/whiteboard/${whiteboard.id}`);
+            history.push(`/whiteboards/${whiteboard.id}`);
           }}
         >
           View

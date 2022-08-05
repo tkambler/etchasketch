@@ -98,10 +98,10 @@ export function withState(Component) {
       }
       if (
         state.user &&
-        location.pathname !== '/dashboard' &&
-        location.pathname !== '/whiteboards'
+        location.pathname !== '/create' &&
+        location.pathname.indexOf('/whiteboards') !== 0
       ) {
-        history.push('/dashboard');
+        history.push('/whiteboards');
       }
     }, [state.initialized, state.user]);
     if (!state.initialized) {

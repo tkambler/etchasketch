@@ -13,5 +13,10 @@
     "path": "/api/whiteboards/:whiteboardId.png",
     "method": "GET",
     "handler": "@talkspace/api-service/routes/whiteboards/png"
+  },
+  {
+    "path": "/api/whiteboards/:whiteboardId",
+    "method": "GET",
+    "handler": "@talkspace/api-service/routes/whiteboards/get"
   }
 ]

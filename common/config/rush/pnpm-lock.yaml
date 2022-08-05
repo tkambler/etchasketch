@@ -133,6 +133,7 @@ importers:
       canvas2svg: 1.0.16
       classnames: 2.3.1
       css-loader: 3.4.2
+      delay: 5.0.0
       eventemitter3: 4.0.7
       file-loader: 5.0.2
       fork-ts-checker-webpack-plugin: 6.5.0
@@ -171,6 +172,7 @@ importers:
       canvas2svg: 1.0.16
       classnames: 2.3.1
       css-loader: 3.4.2_webpack@5.74.0
+      delay: 5.0.0
       eventemitter3: 4.0.7
       file-loader: 5.0.2_webpack@5.74.0
       fork-ts-checker-webpack-plugin: 6.5.0_typescript@4.7.4+webpack@5.74.0
@@ -2958,7 +2960,6 @@ packages:
   /delay/5.0.0:
     resolution: {integrity: sha512-ReEBKkIfe4ya47wlPYf/gu5ib6yUG0/Aez0JQZQz94kiWtRQvZIQbTiehsnwHvLSWJnQdhVeqYue7Id1dKr0qw==}
     engines: {node: '>=10'}
-    dev: false
 
   /delayed-stream/1.0.0:
     resolution: {integrity: sha512-ZySD7Nf91aLB0RxL4KGrKHBXl7Eds1DAmEdcoVawXnLD7SDhpNgtuII2aAkg7a7QS41jxPSZ17p4VdGnMHk3MQ==}

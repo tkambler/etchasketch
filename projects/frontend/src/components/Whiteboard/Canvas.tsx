@@ -5,6 +5,7 @@ import { useState } from './State';
 export function Canvas(props: {
   width: number;
   height: number;
+  mode: string;
 }): React.ReactElement {
   const state = useState();
   const [canvas, setCanvas] = hooks.useCanvasElement();
@@ -12,12 +13,19 @@ export function Canvas(props: {
   const { canvasEmitter } = hooks.useCanvasInitializer(canvas);
 
   React.useEffect(() => {
+    if (!canvasEmitter) {
+      return;
+    }
     state.dispatch({
       type: 'setEmitter',
       payload: {
         value: canvasEmitter,
       },
     });
+    if (props.mode === 'view') {
+      canvasEmitter.events = state.whiteboard.data;
+      canvasEmitter.replay();
+    }
   }, [canvasEmitter]);
 
   return (
