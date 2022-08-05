@@ -71,7 +71,7 @@ The following features have *not* been enabled:
 
 - The ability to flag a whiteboard as being either public or private
 - The ability to share a whiteboard publicly
-- Stroke smoothing. This should be relatively straightforward to implement. Doing so would likely involve writing to the canvas using a bezier curve algorith (as opposed to the simple lines / strokes that are currently used).
+- Stroke smoothing. This should be relatively straightforward to implement. Doing so would likely involve writing to the canvas using a bezier curve algorithm (as opposed to the simple lines / strokes that are currently used).
 
 ## React Notes
 
