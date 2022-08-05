@@ -11,7 +11,9 @@
   "dependencies": {
     "typedi": "0.8.0",
     "@talkspace/knex-service": "workspace:*",
-    "@talkspace/log-service": "workspace:*"
+    "@talkspace/log-service": "workspace:*",
+    "bcrypt": "5.0.1",
+    "lodash": "4.17.21"
   },
   "prettier": {
     "trailingComma": "es5",

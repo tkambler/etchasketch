@@ -1,4 +1,6 @@
 import * as React from 'react';
+import useReducerX from '@0y0/use-reducer-x';
+import thunkMiddleware from 'redux-thunk';
 
 const LoginStateContext = React.createContext(null);
 
@@ -20,15 +22,13 @@ function reducer(state, action) {
 
 export function withState(Component) {
   return (props) => {
-    const [state, dispatch] = React.useReducer(reducer, {
-      user: {
-        id: 1,
-        first_name: 'John',
-        last_name: 'Doe',
-        username: 'john.doe',
-        email: 'john.doe@gmail.com',
+    const [state, dispatch] = useReducerX(
+      reducer,
+      {
+        user: null,
       },
-    });
+      [thunkMiddleware]
+    );
     return (
       <LoginStateContext.Provider
         value={{

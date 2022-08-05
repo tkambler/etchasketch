@@ -18,6 +18,13 @@
       "safeForSimultaneousRushProcesses": true,
       "shellCommand": "node ./projects/shared-utilities/start.mjs"
     },
+    {
+      "commandKind": "global",
+      "name": "db:reset",
+      "summary": "Resets the database",
+      "safeForSimultaneousRushProcesses": true,
+      "shellCommand": "cd ./projects/app && npm run exec --command=reset"
+    },
     // {
     //   /**
     //    * (Required) Determines the type of custom command.

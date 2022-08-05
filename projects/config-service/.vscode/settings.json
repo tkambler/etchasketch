@@ -3,7 +3,7 @@
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "search.exclude": {
     "src/**/*.js": true,
-    "**/node_modules": true,
+    ,
     "**/rush": true
   },
   "files.exclude": {

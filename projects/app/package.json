@@ -24,7 +24,8 @@
     "@talkspace/knex-service": "workspace:*",
     "commander": "9.4.0",
     "p-retry": "4.6.1",
-    "delay": "5.0.0"
+    "delay": "5.0.0",
+    "bcrypt": "5.0.1"
   },
   "devDependencies": {
     "typescript": "4.7.4",

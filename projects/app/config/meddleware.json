@@ -1,7 +1,7 @@
 {
   "bodyParserJson": {
     "enabled": true,
-    "priority": 2,
+    "priority": 1,
     "module": {
       "name": "body-parser",
       "method": "json",
@@ -14,15 +14,44 @@
   },
   "morgan": {
     "enabled": true,
-    "priority": 3,
+    "priority": 2,
     "module": {
       "name": "morgan",
       "arguments": ["combined"]
     }
   },
-  "route-uuid": {
+  "cors": {
+    "enabled": true,
+    "priority": 3,
+    "module": {
+      "name": "cors",
+      "arguments": []
+    }
+  },
+  "session": {
     "enabled": true,
     "priority": 4,
+    "module": {
+      "name": "express-session",
+      "arguments": [
+        {
+          "secret": "config:sessionSecret",
+          "resave": true,
+          "saveUninitialized": false
+        }
+      ]
+    }
+  },
+  "user": {
+    "enabled": true,
+    "priority": 5,
+    "module": {
+      "name": "@talkspace/api-service/middleware/user"
+    }
+  },
+  "route-uuid": {
+    "enabled": true,
+    "priority": 6,
     "module": {
       "name": "@talkspace/api-service/middleware/route-uuid",
       "arguments": [
@@ -34,7 +63,7 @@
   },
   "routes": {
     "enabled": true,
-    "priority": 5,
+    "priority": 7,
     "module": {
       "name": "@talkspace/api-service/middleware/route-loader",
       "arguments": [

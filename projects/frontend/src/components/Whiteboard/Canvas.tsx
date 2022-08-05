@@ -1,13 +1,24 @@
 import * as React from 'react';
 import * as hooks from './hooks';
+import { useState } from './State';
 
 export function Canvas(props: {
   width: number;
   height: number;
 }): React.ReactElement {
+  const state = useState();
   const [canvas, setCanvas] = hooks.useCanvasElement();
   const canvasRef = hooks.useCanvasRef(setCanvas);
   const { canvasEmitter } = hooks.useCanvasInitializer(canvas);
+
+  React.useEffect(() => {
+    state.dispatch({
+      type: 'setEmitter',
+      payload: {
+        value: canvasEmitter,
+      },
+    });
+  }, [canvasEmitter]);
 
   return (
     <div

@@ -4,8 +4,12 @@ import Paper from '@mui/material/Paper';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
+import * as hooks from './hooks';
 
 export function Login(): React.ReactElement {
+  const login = hooks.useLogin();
+  const [state, dispatch] = hooks.useState();
+
   return (
     <Box
       sx={{
@@ -33,8 +37,16 @@ export function Login(): React.ReactElement {
             required
             autoFocus
             fullWidth
+            value={state.username}
+            onChange={(e) => {
+              dispatch({
+                type: 'setUsername',
+                payload: {
+                  value: e.target.value,
+                },
+              });
+            }}
             label="Username"
-            defaultValue=""
             variant="standard"
           />
           <TextField
@@ -46,12 +58,26 @@ export function Login(): React.ReactElement {
             }}
             required
             fullWidth
+            value={state.password}
+            onChange={(e) => {
+              dispatch({
+                type: 'setPassword',
+                payload: {
+                  value: e.target.value,
+                },
+              });
+            }}
             type="password"
             label="Password"
-            defaultValue=""
             variant="standard"
           />
-          <Button variant="contained" disableElevation>
+          <Button
+            variant="contained"
+            disableElevation
+            onClick={() => {
+              login(state.username, state.password);
+            }}
+          >
             Sign In
           </Button>
         </Stack>

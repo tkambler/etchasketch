@@ -43,7 +43,9 @@
     "webpack-dev-server": "4.7.3",
     "yup": "0.28.0",
     "lodash": "4.17.21",
-    "eventemitter3": "4.0.7"
+    "eventemitter3": "4.0.7",
+    "@0y0/use-reducer-x": "1.0.0",
+    "redux-thunk": "2.4.1"
   },
   "prettier": {
     "trailingComma": "es5",

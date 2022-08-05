@@ -61,7 +61,7 @@
       "**/rush": true,
       "**/temp": true,
       ".rush": true,
-      "**/node_modules": true
+      
     }
   }
 }

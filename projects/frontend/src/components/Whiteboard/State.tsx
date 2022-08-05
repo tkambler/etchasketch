@@ -23,6 +23,11 @@ function reducer(state, action) {
         ...state,
         strokeColor: action.payload.value,
       };
+    case 'setEmitter':
+      return {
+        ...state,
+        emitter: action.payload.value,
+      };
     default:
       throw new Error();
   }

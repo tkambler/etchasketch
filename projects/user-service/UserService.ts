@@ -1,16 +1,49 @@
 /**
- * The App service represents the application as a whole. To start and stop the application, you
- * call start and stop methods that are exposed by this service. It will take care of starting
- * and stopping any underlying subsystems for you.
+ * The User service is responsible for managing all things pertaining to users.
  */
 import { Inject, Service } from 'typedi';
+import { KnexService } from '@talkspace/knex-service';
 import { ChildLogger, Logger } from '@talkspace/log-service';
+import { omit } from 'lodash';
+import * as bcrypt from 'bcrypt';
+
+export type User = {
+  id: string;
+  first_name: string;
+  last_name: string;
+  email: string;
+  username: string;
+};
 
 @Service()
 export class UserService {
-  @Inject()
   @ChildLogger({
     service: 'UserService',
   })
   private log: Logger;
+
+  @Inject()
+  private knex: KnexService;
+
+  /**
+   * Verifies that the supplied username / credentials match the hash that we have on record. If so,
+   * an object describing the user is returned. If not, returns false.
+   */
+  public async validateUserCredentials(
+    username: string,
+    password: string
+  ): Promise<User | boolean> {
+    const user = await (this.knex as any)('users')
+      .first(
+        'id',
+        'first_name',
+        'last_name',
+        'email',
+        'username',
+        'password_hash'
+      )
+      .where('username', username);
+    const valid = await bcrypt.compare(password, user.password_hash);
+    return valid ? omit(user, ['password_hash']) : false;
+  }
 }
