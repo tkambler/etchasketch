@@ -33,8 +33,8 @@ export function useState() {
       }
     },
     {
-      username: 'john.doe',
-      password: '123',
+      username: '',
+      password: '',
     }
   );
 }

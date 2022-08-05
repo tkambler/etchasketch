@@ -62,4 +62,30 @@ export class UserService {
       )
       .where('id', id);
   }
+
+  public async createUser(data: {
+    first_name: string;
+    last_name: string;
+    email: string;
+    username: string;
+    password: string;
+  }) {
+    const existing = await (this.knex as any)('users')
+      .first('id')
+      .where('username', data.username)
+      .orWhere('email', data.email);
+    if (existing) {
+      throw new Error(
+        `A user with that username or email address already exists.`
+      );
+    }
+    const [id] = await (this.knex as any)('users').insert({
+      first_name: data.first_name,
+      last_name: data.last_name,
+      email: data.email,
+      username: data.username,
+      password_hash: await bcrypt.hash(data.password, 10),
+    });
+    return this.getUserById(id);
+  }
 }

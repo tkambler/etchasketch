@@ -1,0 +1,7 @@
+[
+  {
+    "path": "/api/accounts",
+    "method": "POST",
+    "handler": "@talkspace/api-service/routes/accounts/create"
+  }
+]

@@ -3,6 +3,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import { useLocation } from '@app/lib/hooks';
 import { Whiteboards } from './Whiteboards/Whiteboards';
 import { Login } from './Login/Login';
+import { Register } from './Register/Register';
 import { Create } from './Create/Create';
 import { View } from './View/View';
 import { useLoginState } from '@app/components/Setup/Setup';
@@ -12,10 +13,11 @@ export function Routes(): React.ReactElement {
   const location = useLocation();
   return (
     <Switch>
-      {!loginState.user && location.pathname !== '/login' && (
-        <Redirect to="/login" />
-      )}
+      {!loginState.user &&
+        location.pathname !== '/login' &&
+        location.pathname !== '/register' && <Redirect to="/login" />}
       {!loginState.user && <Route path="/login" component={Login} />}
+      {!loginState.user && <Route path="/register" component={Register} />}
       {loginState.user && <Route path="/create" component={Create} />}
       {loginState.user && (
         <Route path="/whiteboards/:whiteboardId" component={View} />

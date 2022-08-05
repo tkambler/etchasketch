@@ -5,12 +5,10 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import * as hooks from './hooks';
-import { useHistory } from '@app/lib/hooks';
 
-export function Login(): React.ReactElement {
-  const login = hooks.useLogin();
+export function Register(): React.ReactElement {
   const [state, dispatch] = hooks.useState();
-  const history = useHistory();
+  const submit = hooks.useSubmit(state, dispatch);
 
   return (
     <Box
@@ -38,6 +36,69 @@ export function Login(): React.ReactElement {
             }}
             required
             autoFocus
+            fullWidth
+            value={state.first_name}
+            onChange={(e) => {
+              dispatch({
+                type: 'setFirstName',
+                payload: {
+                  value: e.target.value,
+                },
+              });
+            }}
+            label="First Name"
+            variant="standard"
+          />
+          <TextField
+            style={{
+              marginBottom: 10,
+            }}
+            InputLabelProps={{
+              shrink: true,
+            }}
+            required
+            fullWidth
+            value={state.last_name}
+            onChange={(e) => {
+              dispatch({
+                type: 'setLastName',
+                payload: {
+                  value: e.target.value,
+                },
+              });
+            }}
+            label="Last Name"
+            variant="standard"
+          />
+          <TextField
+            style={{
+              marginBottom: 10,
+            }}
+            InputLabelProps={{
+              shrink: true,
+            }}
+            required
+            fullWidth
+            value={state.email}
+            onChange={(e) => {
+              dispatch({
+                type: 'setEmail',
+                payload: {
+                  value: e.target.value,
+                },
+              });
+            }}
+            label="Email"
+            variant="standard"
+          />
+          <TextField
+            style={{
+              marginBottom: 10,
+            }}
+            InputLabelProps={{
+              shrink: true,
+            }}
+            required
             fullWidth
             value={state.username}
             onChange={(e) => {
@@ -77,15 +138,7 @@ export function Login(): React.ReactElement {
             variant="contained"
             disableElevation
             onClick={() => {
-              login(state.username, state.password);
-            }}
-          >
-            Sign In
-          </Button>
-          <Button
-            variant="text"
-            onClick={() => {
-              history.push('/register');
+              submit();
             }}
           >
             Create Account
