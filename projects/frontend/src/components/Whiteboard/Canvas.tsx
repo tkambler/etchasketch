@@ -16,7 +16,7 @@ export function Canvas(props: {
         width: props.width,
         height: props.height,
         border: '5px solid #000',
-        boxSizing: 'border-box',
+        boxSizing: 'content-box',
         backgroundColor: '#fff',
       }}
     >
@@ -28,7 +28,6 @@ export function Canvas(props: {
         style={{
           width: props.width - 5,
           height: props.height - 5,
-          boxSizing: 'border-box',
         }}
       ></canvas>
     </div>
