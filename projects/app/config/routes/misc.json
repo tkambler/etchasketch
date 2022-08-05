@@ -1,0 +1,7 @@
+[
+  {
+    "path": "/api/ping",
+    "method": "GET",
+    "handler": "@talkspace/api-service/routes/misc/ping"
+  }
+]

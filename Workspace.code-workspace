@@ -11,6 +11,7 @@
     { "path": "./projects/log-service", "name": "LogService"},
     { "path": "./projects/user-service", "name": "UserService"},
     { "path": "./projects/session-service", "name": "SessionService"},
+    { "path": "./projects/whiteboard-service", "name": "WhiteboardService"},
     { "path": "./common/config", "name": "Common (Rush)"},
 	],
   "settings": {

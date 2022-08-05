@@ -436,6 +436,10 @@
       "packageName": "@talkspace/session-service",
       "projectFolder": "projects/session-service"
     },
+    {
+      "packageName": "@talkspace/whiteboard-service",
+      "projectFolder": "projects/whiteboard-service"
+    },
     // {
     //   /**
     //    * The NPM package name of the project (must match package.json)

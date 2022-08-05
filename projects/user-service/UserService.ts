@@ -46,4 +46,20 @@ export class UserService {
     const valid = await bcrypt.compare(password, user.password_hash);
     return valid ? omit(user, ['password_hash']) : false;
   }
+
+  /**
+   * Fetches user by ID.
+   */
+  public getUserById(id: number) {
+    return (this.knex as any)('users')
+      .first(
+        'id',
+        'first_name',
+        'last_name',
+        'email',
+        'username',
+        'password_hash'
+      )
+      .where('id', id);
+  }
 }

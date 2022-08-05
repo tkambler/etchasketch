@@ -10,6 +10,7 @@ importers:
       '@talkspace/config-service': workspace:*
       '@talkspace/log-service': workspace:*
       '@talkspace/user-service': workspace:*
+      '@talkspace/whiteboard-service': workspace:*
       '@types/express': 4.17.13
       body-parser: 1.20.0
       cors: 2.8.5
@@ -25,6 +26,7 @@ importers:
       '@talkspace/config-service': link:../config-service
       '@talkspace/log-service': link:../log-service
       '@talkspace/user-service': link:../user-service
+      '@talkspace/whiteboard-service': link:../whiteboard-service
       body-parser: 1.20.0
       cors: 2.8.5
       express: 4.18.1
@@ -246,6 +248,20 @@ importers:
       '@talkspace/log-service': link:../log-service
       bcrypt: 5.0.1
       lodash: 4.17.21
+      typedi: 0.8.0
+
+  ../../projects/whiteboard-service:
+    specifiers:
+      '@talkspace/knex-service': workspace:*
+      '@talkspace/log-service': workspace:*
+      lodash: 4.17.21
+      moment: 2.29.4
+      typedi: 0.8.0
+    dependencies:
+      '@talkspace/knex-service': link:../knex-service
+      '@talkspace/log-service': link:../log-service
+      lodash: 4.17.21
+      moment: 2.29.4
       typedi: 0.8.0
 
 packages:
@@ -5293,6 +5309,10 @@ packages:
 
   /module-alias/2.2.2:
     resolution: {integrity: sha512-A/78XjoX2EmNvppVWEhM2oGk3x4lLxnkEA4jTbaK97QKSDjkIoOsKQlfylt/d3kKKi596Qy3NP5XrXJ6fZIC9Q==}
+
+  /moment/2.29.4:
+    resolution: {integrity: sha512-5LC9SOxjSc2HF6vO2CyuTDNivEdoz2IvyJJGj6X8DJ0eFyfszE0QiEd+iXmBvUP3WHxSjFH/vIsA0EN00cgr8w==}
+    dev: false
 
   /morgan/1.10.0:
     resolution: {integrity: sha512-AbegBVI4sh6El+1gNwvD5YIck7nSA36weD7xvIxG4in80j/UoK8AEGaWnnz8v1GxonMCltmlNs5ZKbGvl9b1XQ==}

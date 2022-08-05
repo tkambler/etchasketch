@@ -13,6 +13,7 @@
     "@talkspace/log-service": "workspace:*",
     "@talkspace/config-service": "workspace:*",
     "@talkspace/user-service": "workspace:*",
+    "@talkspace/whiteboard-service": "workspace:*",
     "express": "4.18.1",
     "memoize-decorator": "1.0.2",
     "meddleware": "3.0.4",

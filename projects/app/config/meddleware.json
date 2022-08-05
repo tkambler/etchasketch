@@ -25,7 +25,12 @@
     "priority": 3,
     "module": {
       "name": "cors",
-      "arguments": []
+      "arguments": [
+        {
+          "origin": "http://localhost:9010",
+          "credentials": true
+        }
+      ]
     }
   },
   "session": {
@@ -37,7 +42,11 @@
         {
           "secret": "config:sessionSecret",
           "resave": true,
-          "saveUninitialized": false
+          "saveUninitialized": true,
+          "cookie": {
+            "secure": false,
+            "httpOnly": false
+          }
         }
       ]
     }
@@ -49,9 +58,16 @@
       "name": "@talkspace/api-service/middleware/user"
     }
   },
-  "route-uuid": {
+  "auth": {
     "enabled": true,
     "priority": 6,
+    "module": {
+      "name": "@talkspace/api-service/middleware/auth"
+    }
+  },
+  "route-uuid": {
+    "enabled": true,
+    "priority": 7,
     "module": {
       "name": "@talkspace/api-service/middleware/route-uuid",
       "arguments": [
@@ -63,7 +79,7 @@
   },
   "routes": {
     "enabled": true,
-    "priority": 7,
+    "priority": 8,
     "module": {
       "name": "@talkspace/api-service/middleware/route-loader",
       "arguments": [

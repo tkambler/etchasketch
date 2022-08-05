@@ -1,4 +1,6 @@
 import * as React from 'react';
+import useReducerX from '@0y0/use-reducer-x';
+import thunkMiddleware from 'redux-thunk';
 
 const StateContext = React.createContext();
 
@@ -7,6 +9,7 @@ export function useState() {
 }
 
 function reducer(state, action) {
+  console.log('Whiteboard.reducer', state, action);
   switch (action.type) {
     case 'setStrokeSize':
       return {
@@ -35,11 +38,15 @@ function reducer(state, action) {
 
 export function withState(Component) {
   return (props) => {
-    const [state, dispatch] = React.useReducer(reducer, {
-      strokeSize: 1,
-      tool: 'pen',
-      strokeColor: 'black',
-    });
+    const [state, dispatch] = useReducerX(
+      reducer,
+      {
+        strokeSize: 1,
+        tool: 'pen',
+        strokeColor: 'black',
+      },
+      [thunkMiddleware]
+    );
     return (
       <StateContext.Provider
         value={{

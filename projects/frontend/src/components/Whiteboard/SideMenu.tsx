@@ -6,9 +6,12 @@ import MenuItem from '@mui/material/MenuItem';
 import ListItemText from '@mui/material/ListItemText';
 import Typography from '@mui/material/Typography';
 import { useState } from './State';
+import { useToast } from '@app/components/Setup/Setup';
+import * as actions from './actions';
 
 export function SideMenu(): React.ReactElement {
   const state = useState();
+  const toast = useToast();
   return (
     <Paper sx={{ width: 320, maxWidth: '100%' }}>
       <MenuList>
@@ -19,7 +22,11 @@ export function SideMenu(): React.ReactElement {
             </Typography>
           </ListItemText>
         </MenuItem>
-        <MenuItem onClick={() => {}}>
+        <MenuItem
+          onClick={() => {
+            state.dispatch(actions.save(toast));
+          }}
+        >
           <ListItemText>Save</ListItemText>
         </MenuItem>
         <MenuItem onClick={() => {}}>

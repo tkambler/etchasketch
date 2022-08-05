@@ -1,0 +1,7 @@
+[
+  {
+    "path": "/api/whiteboards",
+    "method": "POST",
+    "handler": "@talkspace/api-service/routes/whiteboards/create"
+  }
+]
