@@ -10,7 +10,7 @@ const retries = 5;
 program
   .action(async () => {
     await setup();
-    const knex = Container.get(KnexService);
+    const knex: any = Container.get(KnexService);
 
     await retry(
       async () => {

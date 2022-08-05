@@ -13,3 +13,16 @@ export function init() {
     });
   };
 }
+
+export function del(whiteboardId, toast) {
+  return async (dispatch, getState) => {
+    await axios({
+      url: `/whiteboards/${whiteboardId}`,
+      method: 'DELETE',
+    });
+    dispatch(init());
+    toast.enqueue('Whiteboard deleted.', {
+      variant: 'success',
+    });
+  };
+}

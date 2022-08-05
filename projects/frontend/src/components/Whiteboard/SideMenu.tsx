@@ -31,12 +31,6 @@ function CreateMenu(): React.ReactElement {
         >
           <ListItemText>Save</ListItemText>
         </MenuItem>
-        <MenuItem onClick={() => {}}>
-          <ListItemText>Start Over</ListItemText>
-        </MenuItem>
-        <MenuItem onClick={() => {}}>
-          <ListItemText>Replay</ListItemText>
-        </MenuItem>
         <Divider />
         <MenuItem disabled={true}>
           <ListItemText>

@@ -1,19 +1,11 @@
 /**
- * The User service is responsible for managing all things pertaining to users.
+ * The whiteboard service is responsible for managing all things pertaining to whiteboards.
  */
 import { Inject, Service } from 'typedi';
 import { KnexService } from '@talkspace/knex-service';
 import { ChildLogger, Logger } from '@talkspace/log-service';
 import sharp from 'sharp';
 import moment from 'moment';
-
-export type User = {
-  id: string;
-  first_name: string;
-  last_name: string;
-  email: string;
-  username: string;
-};
 
 @Service()
 export class WhiteboardService {
@@ -60,14 +52,110 @@ export class WhiteboardService {
   }
 
   public async getWhiteboardsForUser(userId: number) {
-    return (this.knex as any)('whiteboards')
-      .select('id', 'name', 'data', 'svg', 'png', 'drawing_time', 'created_at')
-      .where('user_id', userId);
+    const rows = await (this.knex as any)('whiteboards as w')
+      .innerJoin('users as u', 'u.id', '=', 'w.user_id')
+      .select(
+        'w.id',
+        'w.name',
+        'w.data',
+        'w.svg',
+        'w.png',
+        'w.drawing_time',
+        'w.created_at',
+        'u.id as user_id',
+        'u.first_name',
+        'u.last_name',
+        'u.username',
+        'u.email'
+      )
+      .where('w.user_id', userId);
+    return rows.map((row) => ({
+      id: row.id,
+      name: row.name,
+      data: row.data,
+      svg: row.svg,
+      png: row.png,
+      drawing_time: row.drawing_time,
+      user: {
+        id: row.user_id,
+        first_name: row.first_name,
+        last_name: row.last_name,
+        username: row.username,
+        email: row.email,
+      },
+    }));
+  }
+
+  public async getWhiteboards() {
+    const rows = await (this.knex as any)('whiteboards as w')
+      .innerJoin('users as u', 'u.id', '=', 'w.user_id')
+      .select(
+        'w.id',
+        'w.name',
+        'w.data',
+        'w.svg',
+        'w.png',
+        'w.drawing_time',
+        'w.created_at',
+        'u.id as user_id',
+        'u.first_name',
+        'u.last_name',
+        'u.username',
+        'u.email'
+      );
+    return rows.map((row) => ({
+      id: row.id,
+      name: row.name,
+      data: row.data,
+      svg: row.svg,
+      png: row.png,
+      drawing_time: row.drawing_time,
+      user: {
+        id: row.user_id,
+        first_name: row.first_name,
+        last_name: row.last_name,
+        username: row.username,
+        email: row.email,
+      },
+    }));
   }
 
   public async getWhiteboardById(id: number) {
-    return (this.knex as any)('whiteboards')
-      .first('id', 'name', 'data', 'svg', 'png', 'drawing_time', 'created_at')
-      .where('id', id);
+    const rows = await (this.knex as any)('whiteboards as w')
+      .innerJoin('users as u', 'u.id', '=', 'w.user_id')
+      .select(
+        'w.id',
+        'w.name',
+        'w.data',
+        'w.svg',
+        'w.png',
+        'w.drawing_time',
+        'w.created_at',
+        'u.id as user_id',
+        'u.first_name',
+        'u.last_name',
+        'u.username',
+        'u.email'
+      )
+      .where('w.id', id);
+    return rows.map((row) => ({
+      id: row.id,
+      name: row.name,
+      data: row.data,
+      svg: row.svg,
+      png: row.png,
+      drawing_time: row.drawing_time,
+      user: {
+        id: row.user_id,
+        first_name: row.first_name,
+        last_name: row.last_name,
+        username: row.username,
+        email: row.email,
+      },
+    }))[0];
+  }
+
+  public async destroyWhiteboardById(id: number) {
+    await (this.knex as any)('whiteboards').where('id', id).del();
   }
 }

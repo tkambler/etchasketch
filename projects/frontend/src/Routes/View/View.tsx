@@ -8,10 +8,7 @@ import * as actions from './actions';
 
 function View(): React.ReactElement {
   const params = useParams();
-  console.log(params);
-
   const state = useState();
-  const history = useHistory();
 
   React.useEffect(() => {
     state.dispatch(actions.init(params.whiteboardId));

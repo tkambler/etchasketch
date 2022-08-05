@@ -7,10 +7,14 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { useHistory } from '@app/lib/hooks';
 import { useState } from './State';
+import { useLoginState, useToast } from '@app/components/Setup/Setup';
+import * as actions from './actions';
 
 export function WhiteboardCard({ whiteboard }: { whiteboard }) {
   const state = useState();
+  const loginState = useLoginState();
   const history = useHistory();
+  const toast = useToast();
   return (
     <Card sx={{ maxWidth: 300 }}>
       <CardMedia
@@ -39,7 +43,13 @@ export function WhiteboardCard({ whiteboard }: { whiteboard }) {
         >
           View
         </Button>
-        <Button size="small" onClick={() => {}}>
+        <Button
+          size="small"
+          disabled={whiteboard.user.id !== loginState.user.id}
+          onClick={() => {
+            state.dispatch(actions.del(whiteboard.id, toast));
+          }}
+        >
           Delete
         </Button>
       </CardActions>
