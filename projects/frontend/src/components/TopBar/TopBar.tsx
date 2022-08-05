@@ -1,3 +1,6 @@
+/**
+ * The blue application bar that sits at the top of all authenticated routes.
+ */
 import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -18,7 +21,6 @@ import { useHistory } from '@app/lib/hooks';
 export function TopBar() {
   const toast = useToast();
   const history = useHistory();
-  const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const loginState = useLoginState();
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -55,45 +57,42 @@ export function TopBar() {
               Create Whiteboard
             </Button>
           </Box>
-
-          {auth && (
-            <div>
-              <IconButton
-                size="large"
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleMenu}
-                color="inherit"
-              >
-                <AccountCircle />
-              </IconButton>
-              <Menu
-                id="menu-appbar"
-                anchorEl={anchorEl}
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
+          <div>
+            <IconButton
+              size="large"
+              aria-label="account of current user"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              onClick={handleMenu}
+              color="inherit"
+            >
+              <AccountCircle />
+            </IconButton>
+            <Menu
+              id="menu-appbar"
+              anchorEl={anchorEl}
+              anchorOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+              open={Boolean(anchorEl)}
+              onClose={handleClose}
+            >
+              <MenuItem
+                onClick={() => {
+                  handleClose();
+                  loginState.dispatch(sessionActions.logout(toast));
                 }}
-                keepMounted
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                open={Boolean(anchorEl)}
-                onClose={handleClose}
               >
-                <MenuItem
-                  onClick={() => {
-                    handleClose();
-                    loginState.dispatch(sessionActions.logout(toast));
-                  }}
-                >
-                  Sign Out
-                </MenuItem>
-              </Menu>
-            </div>
-          )}
+                Sign Out
+              </MenuItem>
+            </Menu>
+          </div>
         </Toolbar>
       </AppBar>
     </Box>

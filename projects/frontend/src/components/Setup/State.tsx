@@ -1,3 +1,8 @@
+/**
+ * Wraps a context around the app that provides essential global state (e.g. Does the current user have an active
+ * session? Who are they?) To access this state, call the `useLoginState()` hook that is exported
+ * from: @app/components/Setup/Setup
+ */
 import * as React from 'react';
 import useReducerX from '@0y0/use-reducer-x';
 import thunkMiddleware from 'redux-thunk';

@@ -1,3 +1,6 @@
+/**
+ * Loads the top application bar for all authenticated routes.
+ */
 import * as React from 'react';
 import { TopBar } from '@app/components/TopBar/TopBar';
 import { useLoginState } from './State';

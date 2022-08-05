@@ -1,3 +1,13 @@
+/**
+ * Enables support for toast notifications.
+ *
+ * import { useToast } from '@app/components/Setup/Setup';
+ *
+ * const toast = useToast();
+ * toast.enqueue('Something good happened.', {
+ *   variant: 'success',
+ * });
+ */
 import * as React from 'react';
 import { SnackbarProvider, useSnackbar } from 'notistack';
 import { isPlainObject } from 'lodash';

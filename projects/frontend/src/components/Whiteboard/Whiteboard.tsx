@@ -1,3 +1,7 @@
+/**
+ * The Whiteboard component renders a canvas for drawing and a sidebar menu for interacting with it. The options
+ * that are exposed to the user will vary based on whether you pass in `create` or `view` to the `mode` prop.
+ */
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';

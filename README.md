@@ -33,13 +33,17 @@ If you're looking for the entrypoint into the React layer, see: `Frontend/src/in
 
 ## Services / Dependency Injection
 
-This project takes advantage of the monorepo approach by creating distinct projects / packages that are responsible for managing major portions of the API. The following service layers exist:
+This project takes advantage of the monorepo approach by creating distinct projects / packages that are responsible for managing major portions of the API. The services are managed with [typedi](https://docs.typestack.community/typedi/) - a dependency-injection library for Node. The following service layers exist:
 
-- AppService - Represents the application as a whole. Provides a convenient layer for starting / stopping the entire application.
+- AppService - Small service that represents the application as a whole. Provides a convenient layer for starting / stopping the entire application.
 - ConfigService - Manages runtime config.
+    - Utilizes [confit](https://github.com/krakenjs/confit) and [shortstop-handlers](https://github.com/krakenjs/shortstop-handlers). Provides a very clean mechanism for driving Express middleware setup via config.
 - APIService - Exposes an Express application that powers the API.
-- KnexService - Exposes a DB query builder. Currently uses SQLite.
-- LogService - Service for logging useful runtime info to the console.
+    - Each individual request handler is defined as a service class. As a result, it becomes very easy to create handlers that take advantage of some of the niceties that come along with using typedi (e.g. easy access to other services via `Inject` decorator).
+- KnexService - Exposes a DB query builder.
+    - Uses [knex](https://knexjs.org/)
+        - Currently uses SQLite, but adapters exist for various popular DBs (e.g. PostgreSQL, MySQL, MSSQL, etc...).
+- LogService - Service for logging useful runtime info to the console (or elsewhere, if so desired)
 - UserService - Exposes methods for creating users, fetching user data, etc...
 - WhiteboardService - Exposes methods for creating whiteboards, fetching whiteboard data, etc...
 
@@ -59,17 +63,20 @@ The following features have been enabled:
     - Creation date / time and total drawing time are recorded
     - Whiteboards are stored as PNGs *and* SVGs, and the underlying data that originally went into the canvas is saved as well (in order to allow for playback)
 - A shared view from which you can view all whiteboards (and delete your own)
-- The ability to view whiteboards
+- The ability to view specific whiteboards
     - The ability to replay the creation process (i.e. watch the whiteboard being created)
 
 The following features have *not* been enabled:
 
 - The ability to flag a whiteboard as being either public or private
 - The ability to share a whiteboard publicly
-
-**Of Note:** Smoothing out the drawings should be rather straightforward, but was not done. Doing so would likely involve writing to the canvas using a bezier curve algorith.
+- Stroke smoothing. This should be relatively straightforward to implement. Doing so would likely involve writing to the canvas using a bezier curve algorith (as opposed to the simple lines / strokes that are currently used).
 
 ## React Notes
 
 - Simple state management approaches were used as opposed to elaborate state management tools (e.g. Redux, sagas, etc...).
     - React's built-in `useReducer` method was extended with thunk support via `@0y0/use-reducer-x`.
+- All of the important bootstrapping steps that typically take place as part of launching a React app have been abstracted behind a simple `Setup` component.
+    - This is where initial session data is fetched, default styles are applied, etc...
+- Toast notifications are displayed via [notistack](https://github.com/iamhosseindhv/notistack)
+- UI was implemented with [MUI components](https://mui.com/)

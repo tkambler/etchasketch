@@ -1,5 +1,8 @@
 import { axios } from '@app/axios';
 
+/**
+ * Save the drawing. Currently, this cannot be undone. Once you save - you're done making changes.
+ */
 export function save(toast, history) {
   return async (dispatch, getState) => {
     try {
@@ -26,6 +29,9 @@ export function save(toast, history) {
   };
 }
 
+/**
+ * Re-watch the steps by which the drawing was originally created.
+ */
 export function replay() {
   return async (dispatch, getState) => {
     const state = getState();
