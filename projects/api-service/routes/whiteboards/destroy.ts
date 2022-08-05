@@ -1,6 +1,5 @@
 import { Inject, Service } from 'typedi';
 import { WhiteboardService } from '@talkspace/whiteboard-service';
-import { omit } from 'lodash';
 
 @Service()
 class Route {
