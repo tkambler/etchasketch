@@ -13,7 +13,6 @@ export = () => {
     if (req.user) {
       return next();
     }
-    console.log('foo');
     return res.status(401).end();
   };
 };
