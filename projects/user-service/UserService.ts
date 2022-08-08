@@ -52,14 +52,7 @@ export class UserService {
    */
   public getUserById(id: number) {
     return (this.knex as any)('users')
-      .first(
-        'id',
-        'first_name',
-        'last_name',
-        'email',
-        'username',
-        'password_hash'
-      )
+      .first('id', 'first_name', 'last_name', 'email', 'username')
       .where('id', id);
   }
 
