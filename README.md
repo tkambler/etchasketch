@@ -7,7 +7,7 @@ This project is structured as a [monorepo](https://en.wikipedia.org/wiki/Monorep
 - Install the `rush` CLI utility
 - Clone the repo
 - Install dependencies
-- Run: `rush start` (this will simulataneously run the API server / React's WebPack build in watch mode and run DB migrations / seeds)
+- Run: `rush start` (this will simultaneously run the API server / React's WebPack build in watch mode and run DB migrations / seeds)
 
 Once you've done this, the application should be accessible at: http://localhost:9010
 
